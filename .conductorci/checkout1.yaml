@@ -19,7 +19,6 @@ stages:
     jobs:
       - job: CheckoutAliases
         steps:
-          - checkout: default
           - checkout: self
             path: src
             clean: "true"
