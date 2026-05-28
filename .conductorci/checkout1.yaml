@@ -1,0 +1,28 @@
+title: Master 3 - Checkout And Integrations
+pool: pool1
+
+integrations:
+  repositories:
+    self:
+      type: github
+      repository: testing-ci-cd/test
+      connection: github-main
+      ref: refs/heads/main
+    tools:
+      type: github
+      repository: testing-ci-cd/test
+      connection: github-main
+      ref: refs/heads/main
+
+stages:
+  - stage: Checkout
+    jobs:
+      - job: CheckoutAliases
+        steps:
+          - checkout: self
+            path: src
+            clean: "true"
+            fetchDepth: "1"
+          - checkout: tools
+            path: tools
+          - powershell: Write-Host "repositories checked out"
